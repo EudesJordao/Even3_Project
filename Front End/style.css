@@ -1,0 +1,457 @@
+/* Paleta */
+
+:root {
+  --gray-900: hsl(0, 0%, 5%);
+  --gray-800: hsl(0, 0%, 10%);
+  --gray-700: hsl(0, 0%, 13%);
+  --gray-600: hsl(0, 0%, 20%);
+  --gray-500: hsl(0, 0%, 30%);
+  --gray-400: hsl(0, 0%, 45%);
+  --gray-300: hsl(0, 0%, 60%);
+  --gray-200: hsl(0, 0%, 75%);
+  --gray-100: hsl(0, 0%, 90%);
+  --gray-50:  hsl(0, 0%, 97%);
+}
+/* Body */
+
+body {
+    background-color: var(--gray-600);
+    color: var(--gray-50);
+    
+    font-family: 'Roboto', sans-serif;
+    font-weight: 100;
+    font-size: 90%;
+
+    display: flex;
+    height: 100vh;
+    margin: 0;  
+}
+
+/* Reset */
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+/* Barra lateral esquerda - icones */
+
+.left-vertical-bar {
+    background-color: var(--gray-700);
+    height: 100vh;
+    width: 20vw;
+    position: fixed;
+    top: 0;
+    left: 0;
+
+    display: flex;
+    flex-direction: column; 
+    padding: 25px;
+    gap: 10px;
+    justify-content: flex-start;
+    
+    border-radius: 10px;
+}
+
+
+.top-icons{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 35px 35px;
+}
+
+.icon-logo,
+.search-icon,
+.new-chat {
+    width: 30px;
+    height: auto;
+}
+
+.right-icons {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.left-tittle{
+    font-weight: bold;
+}
+
+/* Conversas recentes */
+
+.recent-conversarions,
+.last-30-days,
+.last-year {
+  margin-bottom: 70px;
+  margin-left: 35px;
+}
+
+/* Conversas - blocos fixos e alinhados */
+.conteiner-conversations-overtime {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    overflow-y: auto;
+    padding-right: 8px;
+    max-height: calc(100vh - 200px);
+}
+  
+  /* Seção de cada grupo */
+
+.conversation-section {
+    list-style: none;
+    margin: 0;
+    padding: 0 10px;
+}
+
+.left-title {
+    font-weight: bold;
+    font-size: 14px;
+    margin-bottom: 8px;
+}
+
+/* Itens da lista */
+
+.conversation-section li {
+    margin-bottom: 6px;
+}
+
+.conversation-section {
+    list-style: none;
+    margin: 0;
+    padding: 0 10px;
+
+    max-height: 150px;        
+    overflow-y: auto;
+    scrollbar-width: thin;    
+}
+
+.conversation-section li a {
+    color: var(--gray-100);
+    text-decoration: none;
+    font-weight: 300;
+    font-size: 14px;
+    display: block;
+    padding: 4px 8px;
+    border-radius: 4px;
+    transition: background-color 0.2s;
+}
+
+.conversation-section li a:hover {
+    background-color: var(--gray-600);
+}
+
+/* scrollbar */
+
+.conversation-section::-webkit-scrollbar {
+    width: 6px;
+}
+
+.conversation-section::-webkit-scrollbar-thumb {
+    background-color: var(--gray-500);
+    border-radius: 4px;
+}
+
+.conversation-section {
+    scrollbar-width: thin;
+    scrollbar-color: var(--gray-500) transparent;
+}
+
+/* upgrade de plano */
+
+.plan-upgrade {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+  
+    background-color: transparent;
+    text-decoration: none;
+    color: var(--gray-100);
+    font-weight: 300;
+    font-size: 14px;
+  
+    padding: 6px 8px;
+    border-radius: 6px;
+  
+    transition: background-color 0.2s;
+}
+
+.plan-upgrade:hover {
+    background-color: var(--gray-600);
+}
+
+/* Ajusta o tamanho do ícone/imagem */
+
+.image-plan {
+    width: 20px;
+    height: auto;
+}
+
+/* Container para posicionar o botão no final da barra lateral */
+
+.upgrade-container {
+    margin-top: auto;
+    padding: 16px;
+  }
+  
+/* Estilização do botão */
+
+.plan-upgrade {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+
+    width: 100%;
+    padding: 12px;
+  
+    background-color: var(--gray-500);
+    color: var(--gray-50);
+    font-size: 15px;
+    font-weight: 500;
+    text-decoration: none;
+  
+    border-radius: 8px;
+    transition: background-color 0.3s ease;
+}
+
+.plan-upgrade:hover {
+    background-color: var(--gray-300);
+}
+  
+/* Ícone dentro do botão */
+
+.image-plan {
+    width: 50px;
+    height: auto;
+}
+
+.tooltip {
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity 0.2s;
+
+    position: absolute;
+    bottom: 120%;
+    left: 50%;
+    transform: translateX(-50%);
+
+    background-color: var(--gray-800);
+    color: var(--gray-50);
+    padding: 6px 10px;
+    border-radius: 6px;
+    font-size: 12px;
+    white-space: nowrap;
+    z-index: 10;
+}
+  
+.plan-upgrade, .left-icon:hover .tooltip {
+    visibility: visible;
+    opacity: 1;
+}
+
+/* Chat lado direito */
+
+.chat-right-part {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background-color: var(--gray-600);
+    padding: 20px;
+    height: 100vh;
+    margin-left: 20vw;
+    box-sizing: border-box;
+}
+  
+.chat {
+    flex: 1;
+    overflow-y: auto;
+    padding: 10px;
+    padding-bottom: 120px; 
+}
+
+/* Input e botões inspirados no ChatGPT */
+
+.chat-input {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 20px;
+    gap: 12px;
+
+    position: fixed;
+    bottom: 20px;
+    left: 20vw;
+
+    background-color: var(--gray-800);
+    color: var(--gray-50);
+    border: 1px solid var(--gray-600);
+    border-radius: 24px;
+
+    margin: 0 auto; 
+
+    max-width: 75vw;
+    box-sizing: border-box;
+
+    font-size: 16px;
+    outline: none;
+    box-sizing: border-box;
+
+    width: calc(100vw - 20vw - 40px);
+    height: 11vh;
+    padding: 0 20px;
+
+    margin-left: 20px;
+
+    z-index: 10;
+}
+
+.chat-input textarea {
+    flex: 1;
+    height: 7vh;
+    padding: 0 20px;
+
+    background-color: var(--gray-800);
+    color: var(--gray-50);
+    border: 1px solid var(--gray-600);
+    border-radius: 24px;
+
+    font-size: 16px;
+    outline: none;
+    box-sizing: border-box;
+}
+
+.chat-input textarea:focus {
+    border-color: var(--gray-300);
+}
+
+.chat-input button {
+    background-color: var(--gray-800);
+    border: 1px solid var(--gray-600);
+    border-radius: 50%;
+
+    width: 44px;
+    height: 44px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.chat-input button:hover {
+    background-color: var(--gray-600);
+}
+
+.chat-input button img {
+    width: 20px;
+    height: 20px;
+}
+
+.chat-right-part {
+    /* margin-left: 20vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center; 
+    background-color: var(--gray-600);
+    padding: 20px;
+    box-sizing: border-box; */
+
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    background-color: var(--gray-600);
+    padding: 20px;
+    margin-left: 20vw;
+    box-sizing: border-box;
+  
+    /* para scroll no conteúdo da mensagem, não na mensagem */
+    overflow-y: auto;
+}
+
+.chat-input textarea {
+    width: 70vw;
+    height: 7vh;
+    resize: none;
+    
+    padding: 12px 20px;
+    background-color: var(--gray-800);
+    color: var(--gray-50);
+    border: 1px solid var(--gray-600);
+    border-radius: 24px;
+
+    font-size: 16px;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 300;
+    outline: none;
+    box-sizing: border-box;
+    line-height: 1.4;
+}
+
+.chat-input textarea:focus {
+    border-color: var(--gray-300);
+}
+
+.chat-input form {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    width: 100%;
+    border: 1px solid var(--gray-500);
+    border-radius: 16px;
+    padding: 10px;
+    box-sizing: border-box;
+}
+
+.chat-input textarea {
+    flex: 1;
+    height: 50px;
+    padding: 12px 20px;
+    background-color: var(--gray-700);
+    color: var(--gray-50);
+    border: none;
+    border-radius: 24px;
+    font-size: 16px;
+    font-family: 'Roboto', sans-serif;
+    outline: none;
+    resize: none;
+}
+
+.chat-input button {
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+.chat-input button img {
+    width: 24px;
+    height: 24px;
+  }
+
+  
+  /* Alterando Message-Box */
+  
+.chatbox-wrapper {
+    background-color: var(--gray-800);
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.message-box {
+    /* flex: 1*/
+    overflow-y: visible; 
+    max-height: none;
+    height: auto; 
+    padding: 20px;
+    box-sizing: border-box;
+  }
