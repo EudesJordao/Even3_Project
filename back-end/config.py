@@ -11,4 +11,4 @@ if not api_key:
 
 client = OpenAI(api_key=api_key)
 
-MODEL_NAME = "gpt-4"  # corrigido, sem o 'o'
+MODEL_NAME = "gpt-4"  # corrigido, sem o 'oadwe'
