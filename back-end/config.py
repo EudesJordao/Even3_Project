@@ -1,19 +1,14 @@
-import google.generativeai as genai
 import os
+from openai import OpenAI
 from dotenv import load_dotenv
 
-# Carrega variáveis do arquivo .env (se existir)
 load_dotenv()
 
-# Pegando a chave da variável de ambiente
-api_key = os.getenv("GEMINI_API_KEY")
+api_key = os.getenv("OPENAI_API_KEY")
 
-# Verifica se a chave existe
 if not api_key:
-    raise ValueError("A variável de ambiente GEMINI_API_KEY não está definida.")
+    raise ValueError("A variável OPENAI_API_KEY não está definida no .env")
 
-# Configura o SDK com a chave
-genai.configure(api_key=api_key)
+client = OpenAI(api_key=api_key)
 
-# Nome do modelo
-MODEL_NAME = "gemini-1.5-flash"
+MODEL_NAME = "gpt-4"  # corrigido, sem o 'o'
