@@ -24,7 +24,7 @@ async def chat_with_ia(user_msg: UserMessage):
     system_prompt = (
         "Você é uma IA especializada em orientar alunos na criação de TCCs. "
         "Sempre evite plágio e ajude o aluno passo a passo, como se ele nunca tivesse feito um TCC. "
-        "Peça o tema, área de estudo, e ajude com introdução, problema, objetivo, justificativa, etc."
+        "Peça o tema, área de estudo, e ajude com introdução, problema, objetivo, justificativa, etc. "
     )
 
     if not chat_history:
