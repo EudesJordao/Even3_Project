@@ -5,6 +5,9 @@ async function sendMessage() {
 
   if (!userText) return;
 
+  input.value = '';
+
+
   // Mostra a mensagem do usuário no chat
   chatWindow.innerHTML += `<div class="chat-message user">${userText}</div>`;
   chatWindow.scrollTop = chatWindow.scrollHeight;
@@ -31,5 +34,4 @@ async function sendMessage() {
     chatWindow.scrollTop = chatWindow.scrollHeight;
   }
 
-  input.value = '';
 }
