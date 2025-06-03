@@ -1,108 +1,38 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Mentora de TCC</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      background: #f3f3f3;
-      padding: 20px;
-    }
-    h1 {
-      text-align: center;
-    }
-    #chat {
-      max-width: 600px;
-      margin: 0 auto;
-      background: white;
-      padding: 20px;
-      border-radius: 8px;
-      box-shadow: 0 0 10px #ccc;
-    }
-    .message {
-      margin-bottom: 15px;
-    }
-    .user {
-      text-align: right;
-      color: blue;
-    }
-    .assistant {
-      text-align: left;
-      color: green;
-    }
-    #inputArea {
-      display: flex;
-      margin-top: 20px;
-    }
-    input {
-      flex: 1;
-      padding: 10px;
-      border-radius: 5px;
-      border: 1px solid #ccc;
-    }
-    button {
-      margin-left: 10px;
-      padding: 10px 20px;
-      border: none;
-      background: #007bff;
-      color: white;
-      border-radius: 5px;
-      cursor: pointer;
-    }
-    button:hover {
-      background: #0056b3;
-    }
-  </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Chatbot TCC</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <h1>Mentora de TCC</h1>
-  <div id="chat">
-    <div id="messages"></div>
-    <div id="inputArea">
-      <input type="text" id="userInput" placeholder="Digite sua pergunta..." />
+    
+<header class="top-header">
+  <img src="./logo.jpg"
+       alt="Logo Even3" 
+       class="logo">
+</header>
+<section>
+    <div class="texto-Even">
+    <h1 class="texto-Even1">Pergunte, participe, conecte-se.</h1>
+    <h2 class="texto-Even2">Encontre ajuda para fazer seu TCC</h2>
+    </div>
+    <div class="chat-container">
+    <div class="chat-header">Plataforma de Apoio Acadêmico</div>
+    <div class="chat-window" id="chat-window"></div>
+    <div class="chat-input">
+      <input type="text" id="user-input" placeholder="Pergunte algo sobre TCC...">
       <button onclick="sendMessage()">Enviar</button>
+
     </div>
   </div>
-
-  <script>
-    const API_URL = "http://127.0.0.1:9001/chat";
-
-    function appendMessage(text, sender) {
-      const msg = document.createElement("div");
-      msg.className = `message ${sender}`;
-      msg.textContent = text;
-      document.getElementById("messages").appendChild(msg);
-    }
-
-    async function sendMessage() {
-      const input = document.getElementById("userInput");
-      const message = input.value.trim();
-      if (!message) return;
-
-      appendMessage(message, "user");
-      input.value = "";
-
-      try {
-        const response = await fetch(API_URL, {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({ message }),
-        });
-
-        const data = await response.json();
-        if (data.response) {
-          appendMessage(data.response, "assistant");
-        } else {
-          appendMessage("Erro: " + (data.error || "resposta inválida"), "assistant");
-        }
-      } catch (error) {
-        appendMessage("Erro de rede: " + error.message, "assistant");
-      }
-    }
-  </script>
+</section>
+<footer class="even3-footer">
+  <img src="./logo.jpg" alt="Logo Even3" class="footer-logo-small">
+  <p class="footer-text">&copy; L3 SOLUCÕES EM TECNOLOGIA LTDA  </p>
+</footer>
+  <script src="config.js"></script>
+  <script src="script.js"></script>
 </body>
 </html>
