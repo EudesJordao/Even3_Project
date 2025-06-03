@@ -2,8 +2,18 @@ from fastapi import FastAPI
 from pydantic import BaseModel
 from ia import generate_content  # Agora importa da IA
 from model import SessionLocal, ChatHistory, init_db  # Banco
+from fastapi.middleware.cors import CORSMiddleware
 
 app = FastAPI()
+
+# Liberar acesso do frontend (ajuste para o IP/porta do seu frontend se necessário)
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],  # ou especifique ex: ["http://localhost:3000"]
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 init_db()  # Cria as tabelas se não existirem
 

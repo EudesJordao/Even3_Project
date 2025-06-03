@@ -1,93 +1,108 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GrowUp</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Mentora de TCC</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f3f3f3;
+      padding: 20px;
+    }
+    h1 {
+      text-align: center;
+    }
+    #chat {
+      max-width: 600px;
+      margin: 0 auto;
+      background: white;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px #ccc;
+    }
+    .message {
+      margin-bottom: 15px;
+    }
+    .user {
+      text-align: right;
+      color: blue;
+    }
+    .assistant {
+      text-align: left;
+      color: green;
+    }
+    #inputArea {
+      display: flex;
+      margin-top: 20px;
+    }
+    input {
+      flex: 1;
+      padding: 10px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
+    button {
+      margin-left: 10px;
+      padding: 10px 20px;
+      border: none;
+      background: #007bff;
+      color: white;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    button:hover {
+      background: #0056b3;
+    }
+  </style>
 </head>
 <body>
-    <div>
-        <div class="left-vertical-bar">
-            <div class="top-icons">
-                <div class="left-icon">
-                    <a href="#">
-                        <img class="icon-logo" src="assets\Frame 6.png" alt="place holder image" title="Página incial">
-                    </a>
-                </div>
-                <div class="right-icons">
-                    <a href="#">
-                        <img class="search-icon" src="assets\Frame 6.png" title="Procurar conversa" alt="">
-                    </a>
-                    <a href="#">
-                        <img class="new-chat" src="assets\Frame 6.png" title="Nova conversa" alt="">
-                    </a>
-                </div>
-            </div>
-            <div class="conteiner-conversations-overtime">
-                <ul class="conversation-section">
-                  <p class="left-title">Conversas recentes</p>
-                  <li><a href="#">Conversa</a></li>
-                  <li><a href="#">Conversa</a></li>
-                  <li><a href="#">Conversa</a></li>
-                  <li><a href="#">Conversa</a></li>
-                  <li><a href="#">Conversa</a></li>
-                  <li><a href="#">Conversa</a></li>
-                </ul>
-              
-                <ul class="conversation-section">
-                  <p class="left-title">Últimos 30 dias</p>
-                  <li><a href="#">Conversa</a></li>
-                  <li><a href="#">Conversa</a></li>
-                  <li><a href="#">Conversa</a></li>
-                  <li><a href="#">Conversa</a></li>
-                  <li><a href="#">Conversa</a></li>
-                  <li><a href="#">Conversa</a></li>
-                </ul>
-              
-                <ul class="conversation-section">
-                  <p class="left-title">Último ano</p>
-                  <li><a href="#">Conversa</a></li>
-                  <li><a href="#">Conversa</a></li>
-                  <li><a href="#">Conversa</a></li>
-                  <li><a href="#">Conversa</a></li>
-                  <li><a href="#">Conversa</a></li>
-                  <li><a href="#">Conversa</a></li>
-                </ul>
-              </div>  
+  <h1>Mentora de TCC</h1>
+  <div id="chat">
+    <div id="messages"></div>
+    <div id="inputArea">
+      <input type="text" id="userInput" placeholder="Digite sua pergunta..." />
+      <button onclick="sendMessage()">Enviar</button>
+    </div>
+  </div>
 
-              <div class="upgrade-container">
-                    <a class="plan-upgrade" href="#">
-                        <img class="image-plan" src="assets/Frame 6.png" alt="placeholder">
-                        <p>Fazer upgrade de plano</p>
-                        <span class="tooltip">Atualize seu plano para mais recursos</span>
-                    </a>
-              </div>
+  <script>
+    const API_URL = "http://127.0.0.1:9001/chat";
 
-        </div>
-        <div class="chat-right-part">
-            <div class="chat">
-                <div class="chatbox-wrapper">
-                    <div class="message-box">
-                      <div class="chat response">
-                        <span>Hello there! <br> 
-                          How can I help you today.
-                        </span>
-                      </div>
-                    </div>
-            </div>
-          
-            <div class="chat-input">
-              <form action="/enviar" method="POST">
-                <textarea placeholder="Faça uma pergunta"></textarea>
-                <button type="submit">
-                  <img src="assets/Frame 6.png" alt="Enviar">
-                </button>
-                <button type="button">
-                  <img src="assets/Frame 6.png" alt="Gravar áudio">
-                </button>
-              </form>
-            </div>
-          </div>
+    function appendMessage(text, sender) {
+      const msg = document.createElement("div");
+      msg.className = `message ${sender}`;
+      msg.textContent = text;
+      document.getElementById("messages").appendChild(msg);
+    }
+
+    async function sendMessage() {
+      const input = document.getElementById("userInput");
+      const message = input.value.trim();
+      if (!message) return;
+
+      appendMessage(message, "user");
+      input.value = "";
+
+      try {
+        const response = await fetch(API_URL, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ message }),
+        });
+
+        const data = await response.json();
+        if (data.response) {
+          appendMessage(data.response, "assistant");
+        } else {
+          appendMessage("Erro: " + (data.error || "resposta inválida"), "assistant");
+        }
+      } catch (error) {
+        appendMessage("Erro de rede: " + error.message, "assistant");
+      }
+    }
+  </script>
 </body>
 </html>
